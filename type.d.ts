@@ -1,56 +1,86 @@
-import type { ImageSourcePropType } from "react-native";
-
 declare global {
-    interface AppTab {
-        name: string;
-        title: string;
-        icon: ImageSourcePropType;
-    }
+  type TabIconName = string;
 
-    interface TabIconProps {
-        focused: boolean;
-        icon: ImageSourcePropType;
-    }
+  interface AppTab {
+    name: string;
+    title: string;
+    icon: TabIconName;
+  }
 
-    interface Subscription {
-        id: string;
-        icon: ImageSourcePropType;
-        name: string;
-        plan?: string;
-        category?: string;
-        paymentMethod?: string;
-        status?: string;
-        startDate?: string;
-        price: number;
-        currency?: string;
-        billing: string;
-        frequency?: string;
-        renewalDate?: string;
-        color?: string;
-    }
+  interface TabIconProps {
+    focused: boolean;
+    icon: TabIconName;
+  }
 
-    interface SubscriptionCardProps extends Omit<Subscription, "id"> {
-        expanded: boolean;
-        onPress: () => void;
-        onCancelPress?: () => void;
-        isCancelling?: boolean;
-    }
+  type StudyTaskPriority = 'high' | 'medium' | 'low';
+  type StudyTaskStatus = 'todo' | 'in-progress' | 'completed';
 
-    interface UpcomingSubscription {
-        id: string;
-        icon: ImageSourcePropType;
-        name: string;
-        price: number;
-        currency?: string;
-        daysLeft: number;
-    }
+  interface StudyTask {
+    id: string;
+    title: string;
+    course: string;
+    dueDate: string;
+    dueTime: string;
+    durationMinutes: number;
+    priority: StudyTaskPriority;
+    status: StudyTaskStatus;
+    progress: number;
+    color: string;
+    icon: string;
+    notes?: string;
+    createdAt: string;
+    updatedAt: string;
+    completedAt?: string;
+  }
 
-    interface UpcomingSubscriptionCardProps
-        extends Omit<UpcomingSubscription, "id"> {}
+  interface Course {
+    id: string;
+    code: string;
+    title: string;
+    lecturer: string;
+    nextClass: string;
+    color: string;
+    icon: string;
+    createdAt: string;
+    updatedAt: string;
+  }
 
-    interface ListHeadingProps {
-        title: string;
-    }
+  interface FocusLog {
+    id: string;
+    date: string;
+    minutes: number;
+    note: string;
+    createdAt: string;
+  }
+
+  interface StudyStat {
+    id: string;
+    label: string;
+    value: string;
+    caption: string;
+    icon: string;
+    color: string;
+  }
+
+  interface WeeklyFocus {
+    day: string;
+    date: string;
+    minutes: number;
+  }
+
+  interface Achievement {
+    id: string;
+    title: string;
+    caption: string;
+    icon: string;
+    unlocked: boolean;
+  }
+
+  interface ListHeadingProps {
+    title: string;
+    actionLabel?: string;
+    onPress?: () => void;
+  }
 }
 
-export { };
+export {};
